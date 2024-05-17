@@ -18,7 +18,7 @@ const Chat = () => {
   const userName = cookie.get("Scot_Auth-User_Data");
   const userData = cookie.get("Scot_Auth-User_Data");
 
-  const socket = io("http://localhost:4000");
+  const socket = io("http://localhost:6000");
 
   useEffect(() => {
     setGettingCookie(cookie.get("Scot_Auth-Token"));
