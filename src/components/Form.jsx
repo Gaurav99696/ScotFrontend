@@ -31,7 +31,7 @@ const Form = ({ forSingUp }) => {
         };
 
         const createAccount = await fetch(
-          "https://scotbackend.onrender.com/5000/api/users/register",
+          "https://scotbackend.onrender.com/api/users/register",
           {
             method: "POST",
             headers: {
