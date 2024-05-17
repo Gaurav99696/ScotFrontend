@@ -26,7 +26,7 @@ const Chat = () => {
     const getAllContacts = async () => {
       try {
         const getContacts = await fetch(
-          `http://localhost:5000/api/users/getAllUsers/${userData.userName}`
+          `https://scotbackend.onrender.com/api/users/getAllUsers/${userData.userName}`
         );
         const response = await getContacts.json();
         setAllUsers(response.getUsers);
@@ -55,7 +55,7 @@ const Chat = () => {
     }
 
     const getSingleUser = await fetch(
-      `http://localhost:5000/api/users/getSingleUser/${userName}`
+      `https://scotbackend.onrender.com/api/users/getSingleUser/${userName}`
     );
 
     const response = await getSingleUser.json();

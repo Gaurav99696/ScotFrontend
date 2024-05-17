@@ -28,7 +28,7 @@ const VerifyUser = () => {
         };
 
         const verifyUser = await fetch(
-          "http://localhost:5000/api/users/verifyUser",
+          "https://scotbackend.onrender.com/api/users/verifyUser",
           {
             method: "POST",
             headers: {
