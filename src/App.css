@@ -89,7 +89,7 @@ textarea{
 /* <=================== Pages stlyings ==================> */
 
 .Contanior{
-  width: 65vw;
+  width: 90vw;
   max-width: 400px;
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   padding: 30px;
@@ -276,6 +276,8 @@ h2{
   #text{
     margin-right: 10px;
   }
+
+
 }
 
 /* @media only screen and (max-width: 991px) {
