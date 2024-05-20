@@ -18,7 +18,7 @@ const Chat = () => {
   const userName = cookie.get("Scot_Auth-User_Data");
   const userData = cookie.get("Scot_Auth-User_Data");
 
-  const socket = io("https://scotbackend.onrender.com");
+  const socket = io("https://scotbackend.onrender.com/chat");
 
   useEffect(() => {
     setGettingCookie(cookie.get("Scot_Auth-Token"));
