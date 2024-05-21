@@ -31,7 +31,7 @@ const Form = ({ forSingUp }) => {
         };
 
         const createAccount = await fetch(
-          "https://scot-uybn.onrender.com/api/users/register",
+          "https://scotbackend.onrender.com/api/users/register",
           {
             method: "POST",
             headers: {
@@ -72,7 +72,7 @@ const Form = ({ forSingUp }) => {
           password,
         };
 
-        const login = await fetch("https://scot-uybn.onrender.com/api/users/login", {
+        const login = await fetch("https://scotbackend.onrender.com/api/users/login", {
           method: "POST",
           headers: {
             Accept: "application/json",

@@ -28,7 +28,7 @@ const VerifyUser = () => {
         };
 
         const verifyUser = await fetch(
-          "https://scot-uybn.onrender.com/api/users/verifyUser",
+          "https://scotbackend.onrender.com/api/users/verifyUser",
           {
             method: "POST",
             headers: {
