@@ -18,7 +18,7 @@ const Chat = () => {
   const userName = cookie.get("Scot_Auth-User_Data");
   const userData = cookie.get("Scot_Auth-User_Data");
 
-  const socket = io("https://scotbackend.onrender.com/chat");
+  const socket = io("https://scot-uybn.onrender.com/scochat");
 
   useEffect(() => {
     setGettingCookie(cookie.get("Scot_Auth-Token"));
@@ -26,7 +26,7 @@ const Chat = () => {
     const getAllContacts = async () => {
       try {
         const getContacts = await fetch(
-          `https://scotbackend.onrender.com/api/users/getAllUsers/${userData.userName}`
+          `https://scot-uybn.onrender.com/api/users/getAllUsers/${userData.userName}`
         );
         const response = await getContacts.json();
         setAllUsers(response.getUsers);
@@ -55,7 +55,7 @@ const Chat = () => {
     }
 
     const getSingleUser = await fetch(
-      `https://scotbackend.onrender.com/api/users/getSingleUser/${userName}`
+      `https://scot-uybn.onrender.com/api/users/getSingleUser/${userName}`
     );
 
     const response = await getSingleUser.json();
