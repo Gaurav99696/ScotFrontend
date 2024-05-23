@@ -232,7 +232,6 @@ h2{
   display: flex;
   justify-content: space-evenly;
   padding: 2px;
-  z-index: 3;
   background-color: rgb(57, 46, 74);
   position: fixed;
 }
@@ -281,16 +280,26 @@ h2{
     width: 95vw;
     height: 95vh;
   }
+
+  .nav{
+    width: 91.5%;
+  }
+
+  #text{
+    height: 7px;
+    width: 300px;
+  }
+
+  .sendText{
+    width: 88%;
+    top: 85%;
+    left: 3%;
+    box-shadow: none;
+  }
+
+  #sendButton{
+    padding: 7px;
+    width: 90px;
+    height: 45px;
+  }
 }
-
-/* @media only screen and (max-width: 991px) {
-  body{
-    background-color: yellow;
-  }
-} */
-
-/* @media only screen and (max-width: 1199px) {
-  body{
-    background-color: green;
-  }
-} */
