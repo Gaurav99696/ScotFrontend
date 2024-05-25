@@ -136,7 +136,20 @@ h2{
   font-weight: 200;
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   margin-top: 0px;
-  padding: 7px;
+  padding: 1px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.logoText{
+  margin-top: 10px;
 }
 
 .contactNumbes{
@@ -244,6 +257,42 @@ h2{
 #sendButton{
   padding: 7px;
   width: 90px;
+}
+
+.profile{
+  position: absolute;
+  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  top: 100px;
+  text-align: center;
+  left: 300px;
+  width: 250px;
+  background-color: rgba(57, 46, 74);
+  overflow-wrap: normal;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.profile img{
+  width: 55px;
+  height: 55px;
+  margin-bottom: 10px;
+}
+
+.profile h4{
+  margin-bottom: 10px;
+}
+
+.profile h6{
+  margin-bottom: 10px;
+}
+
+.oprationButtons{
+  margin: 5px;
+  padding: 8px;
+}
+
+#deleteAcc{
+  background-color: rgb(137, 0, 0);
 }
 
 @media only screen and (max-width: 767px) {

@@ -3,27 +3,38 @@ import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import auth from "../context/AuthContext";
 import { io } from "socket.io-client";
+import Profile from "../components/Profile";
 
 const Chat = () => {
   const [text, setText] = useState("");
-  const [gettingCookie, setGettingCookie] = useState("");
-  const [allUsers, setAllUsers] = useState();
+  const [allUsers, setAllUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState();
   const [chats, setChats] = useState([]);
+  const [seeProfile, setSeeProfile] = useState(false);
 
-  const cookie = new Cookies(null, "/");
+  const cookies = new Cookies();
   const navigate = useNavigate();
   const AuthContext = useContext(auth);
 
-  const userName = cookie.get("Scot_Auth-User_Data");
-  const userData = cookie.get("Scot_Auth-User_Data");
+  const userData = cookies.get("Scot_Auth-User_Data");
 
   const socket = io('https://scotbackend.onrender.com', {
     path: '/chat'
   });
 
   useEffect(() => {
-    setGettingCookie(cookie.get("Scot_Auth-Token"));
+    const authToken = cookies.get("Scot_Auth-Token");
+    if (!authToken) {
+      console.log("No auth token, redirecting to login.");
+      navigate("/login");
+      return;
+    }
+
+    if (!userData) {
+      console.log("No user data, redirecting to login.");
+      navigate("/login");
+      return;
+    }
 
     const getAllContacts = async () => {
       try {
@@ -32,53 +43,60 @@ const Chat = () => {
         );
         const response = await getContacts.json();
         setAllUsers(response.getUsers);
-        if(window.innerWidth > 766){
-          fetchSingleUser(response.getUsers[0].userName);
+        if (window.innerWidth > 766 && response.getUsers.length > 0) {
+          fetchSingleUser(response.getUsers[0]?.userName);
         }
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
+
     getAllContacts();
-  }, []);
+  }, [navigate, userData]);
 
   useEffect(() => {
     socket.on("reciveMSG", (data) => {
       setChats((prevChats) => [...prevChats, data]);
     });
+    return () => {
+      socket.off("reciveMSG");
+    };
   }, []);
 
-
-
   const fetchSingleUser = async (userName) => {
-    if(window.innerWidth < 766){
-      document.querySelector(".numbers").style.display = "none"
-      document.querySelector(".chatSection").style.display = "flex"
+    if (!userName) return;
+
+    if (window.innerWidth < 766) {
+      document.querySelector(".numbers").style.display = "none";
+      document.querySelector(".chatSection").style.display = "flex";
     }
 
-    const getSingleUser = await fetch(
-      `https://scotbackend.onrender.com/api/users/getSingleUser/${userName}`
-    );
-
-    const response = await getSingleUser.json();
-    setCurrentUser(response.getUser);
-    setChats(response.getUser.messages);
-
-    const chatSection = document.querySelector(".chatTextSection");
-    chatSection.scrollBy(0, chatSection.scrollHeight);
+    try {
+      const getSingleUser = await fetch(
+        `https://scotbackend.onrender.com/api/users/getSingleUser/${userName}`
+      );
+      const response = await getSingleUser.json();
+      setCurrentUser(response.getUser);
+      setChats(response.getUser.messages);
+      const chatSection = document.querySelector(".chatTextSection");
+      chatSection.scrollBy(0, chatSection.scrollHeight);
+    } catch (error) {
+      console.error("Error fetching single user:", error);
+    }
   };
 
   const backBtn = () => {
-    document.querySelector(".numbers").style.display = "block"
-    document.querySelector(".chatSection").style.display = "none"
-  }
+    document.querySelector(".numbers").style.display = "block";
+    document.querySelector(".chatSection").style.display = "none";
+  };
 
   const addChat = async () => {
-    if (text.trim() !== "") {
-      setText("");
-    }
+    if (text.trim() === "") return;
+    setText("");
     const chatSection = document.querySelector(".chatTextSection");
     chatSection.scrollBy(0, chatSection.scrollHeight);
+
+    if (!userData || !currentUser) return;
 
     const data = {
       sender: userData.userName,
@@ -89,75 +107,56 @@ const Chat = () => {
     socket.emit("sendMSG", data);
   };
 
-  if (gettingCookie) {
-    return (
-      <div className="chatContanior">
-        <div className="numbers">
-          <div className="logo">
-            <h2 className="logoText">Scot!</h2>
+  return (
+    <div className="chatContanior">
+      <div className="numbers">
+        <div className="logo">
+          <h2 className="logoText">Scot!</h2>
+          <div onClick={() => setSeeProfile(!seeProfile)}>
+            <img src="https://t4.ftcdn.net/jpg/04/98/72/43/360_F_498724323_FonAy8LYYfD1BUC0bcK56aoYwuLHJ2Ge.jpg" alt="User" />
           </div>
-          {allUsers &&
-            allUsers.map((user, i) => {
-              return (
-                <div
-                  className="contactNumbes"
-                  key={user._id}
-                  onClick={(e) => fetchSingleUser(user.userName)}
-                >
-                  <p>{user.userName}' Group</p>
-                </div>
-              );
-            })}
+          {seeProfile && userData ? <Profile userName={userData.userName} email={userData.email} /> : null}
         </div>
-        <div className="chatSection">
-          <div className="nav">
-            {window.innerWidth < 766 ? <button className="backBtn" onClick={backBtn}>&lt;</button> : null}
-            <p>{currentUser ? currentUser.userName : null}</p>
+        {allUsers.map((user) => (
+          <div
+            className="contactNumbes"
+            key={user._id}
+            onClick={() => fetchSingleUser(user.userName)}
+          >
+            <p>{user.userName}' Group</p>
           </div>
-          <section className="chatTextSection">
-            <br />
-            {chats.map((chat, index) => (
-              <>
-                <br />
-                <br />
-                <div className="texts" key={index}>
-                  {chat.sender ? (
-                    <div className="userName">{chat.sender}</div>
-                  ) : (
-                    <div className="userName">{chat.reciver}</div>
-                  )}
-                  <div>{chat.content}</div>
-                </div>
-              </>
-            ))}
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="sendText">
-              <textarea
-                type="text"
-                rows={1}
-                cols={15}
-                id="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Type here..."
-              />
-              <button id="sendButton" onClick={addChat}>
-                Send
-              </button>
-            </div>
-          </section>
-        </div>
+        ))}
       </div>
-    );
-  } else {
-    return navigate("/login");
-  }
+      <div className="chatSection">
+        <div className="nav">
+          {window.innerWidth < 766 ? <button className="backBtn" onClick={backBtn}>&lt;</button> : null}
+          <p>{currentUser ? currentUser.userName : null}</p>
+        </div>
+        <section className="chatTextSection">
+          {chats.map((chat, index) => (
+            <div className="texts" key={index}>
+              <div className="userName">{chat.sender || chat.reciver}</div>
+              <div>{chat.content}</div>
+            </div>
+          ))}
+          <div className="sendText">
+            <textarea
+              type="text"
+              rows={1}
+              cols={15}
+              id="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Type here..."
+            />
+            <button id="sendButton" onClick={addChat}>
+              Send
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 };
 
 export default Chat;
