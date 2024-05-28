@@ -15,11 +15,15 @@ const Profile = ({ userName, email }) => {
   const deleteAcc = async () => {
     const userName = cookie.get("Scot_Auth-User_Data").userName
     const deleteAcc = await fetch(
-      `https://scotbackend.onrender.com/api/users/deleteUser/${userName}`
-    );
-    // cookie.remove("Scot_Auth-User_Data");
-    // cookie.remove("Scot_Auth-Token");
-    // navigate("/");
+      `https://scotbackend.onrender.com/api/users/deleteUser/${userName}`,{
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    cookie.remove("Scot_Auth-User_Data");
+    cookie.remove("Scot_Auth-Token");
+    navigate("/");
   };
 
   return (
