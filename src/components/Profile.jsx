@@ -13,14 +13,16 @@ const Profile = ({ userName, email }) => {
   };
 
   const deleteAcc = async () => {
-    const userName = cookie.get("Scot_Auth-User_Data").userName
+    const userName = cookie.get("Scot_Auth-User_Data").userName;
     const deleteAcc = await fetch(
-      `https://scotbackend.onrender.com/api/users/deleteUser/${userName}`,{
+      `https://scotbackend.onrender.com/api/users/deleteUser/${userName}`,
+      {
         method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+          "Content-Type": "application/json",
+        },
+      }
+    );
     cookie.remove("Scot_Auth-User_Data");
     cookie.remove("Scot_Auth-Token");
     navigate("/");
@@ -34,8 +36,16 @@ const Profile = ({ userName, email }) => {
       />
       <h4>{userName}</h4>
       <h5>{email}</h5>
+      <br />
       <button className="oprationButtons" onClick={(e) => signOut()}>
-        Sign Out
+        Log Out
+      </button>
+      <button
+        className="oprationButtons"
+        onClick={(e) => navigate("/editAcc")}
+        id="edit"
+      >
+        Edit
       </button>
       <button
         className="oprationButtons"

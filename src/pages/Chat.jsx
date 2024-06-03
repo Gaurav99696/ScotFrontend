@@ -18,8 +18,8 @@ const Chat = () => {
 
   const userData = cookies.get("Scot_Auth-User_Data");
 
-  const socket = io('https://scotbackend.onrender.com', {
-    path: '/chat'
+  const socket = io("https://scotbackend.onrender.com", {
+    path: "/chat",
   });
 
   useEffect(() => {
@@ -113,9 +113,14 @@ const Chat = () => {
         <div className="logo">
           <h2 className="logoText">Scot!</h2>
           <div onClick={() => setSeeProfile(!seeProfile)}>
-            <img src="https://t4.ftcdn.net/jpg/04/98/72/43/360_F_498724323_FonAy8LYYfD1BUC0bcK56aoYwuLHJ2Ge.jpg" alt="User" />
+            <img
+              src="https://t4.ftcdn.net/jpg/04/98/72/43/360_F_498724323_FonAy8LYYfD1BUC0bcK56aoYwuLHJ2Ge.jpg"
+              alt="User"
+            />
           </div>
-          {seeProfile && userData ? <Profile userName={userData.userName} email={userData.email} /> : null}
+          {seeProfile && userData ? (
+            <Profile userName={userData.userName} email={userData.email} />
+          ) : null}
         </div>
         {allUsers.map((user) => (
           <div
@@ -129,7 +134,11 @@ const Chat = () => {
       </div>
       <div className="chatSection">
         <div className="nav">
-          {window.innerWidth < 766 ? <button className="backBtn" onClick={backBtn}>&lt;</button> : null}
+          {window.innerWidth < 766 ? (
+            <button className="backBtn" onClick={backBtn}>
+              &lt;
+            </button>
+          ) : null}
           <p>{currentUser ? currentUser.userName : null}</p>
         </div>
         <section className="chatTextSection">

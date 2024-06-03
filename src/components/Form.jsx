@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import auth from "../context/AuthContext";
@@ -13,7 +13,23 @@ const Form = ({ forSingUp }) => {
   const cookie = new Cookies(null, "/");
 
   const navigate = useNavigate();
-  const authContext = useContext(auth)
+  const authContext = useContext(auth);
+
+  useEffect(() => {
+    if (logInError) {
+      const timer = setTimeout(() => {
+        setLogInError("");
+      }, 5000);
+    }
+  }, [logInError]);
+
+  useEffect(() => {
+    if (singUpError) {
+      const timer = setTimeout(() => {
+        setSingUpError("");
+      }, 5000);
+    }
+  }, [singUpError]);
 
   const createAccount = async (e) => {
     e.preventDefault();
@@ -72,28 +88,31 @@ const Form = ({ forSingUp }) => {
           password,
         };
 
-        const login = await fetch("https://scotbackend.onrender.com/api/users/login", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+        const login = await fetch(
+          "https://scotbackend.onrender.com/api/users/login",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
 
         const response = await login.json();
 
         if (response.message === "Success") {
           setEmail("");
           setPassword("");
-          
+
           cookie.set("Scot_Auth-Token", response.isLogin.Authorization);
           cookie.set("Scot_Auth-User_Data", response.isLogin.data);
 
-          authContext.setUser(response.isLogin?.data)
+          authContext.setUser(response.isLogin?.data);
           navigate("/");
-        }else{
-          setLogInError(response.message)
+        } else {
+          setLogInError(response.message);
         }
       }
     } else {

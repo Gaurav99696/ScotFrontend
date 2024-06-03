@@ -1,14 +1,14 @@
 /* <=================== Globle stlyings ==================> */
 
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-body{
+body {
   background-color: rgba(57, 46, 74);
-  color:rgba(238, 236, 243);
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(238, 236, 243);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -17,13 +17,13 @@ body{
   flex-direction: row;
 }
 
-.red{
+.red {
   color: red;
 }
 
 /* <=================== Compnents stlyings ==================> */
 
-button{
+button {
   width: 91%;
   background-color: rgba(57, 46, 74);
   border: none;
@@ -39,7 +39,7 @@ button{
   letter-spacing: 1.5px;
 }
 
-form{
+form {
   width: 100%;
   height: -100%;
   display: flex;
@@ -48,7 +48,7 @@ form{
   flex-direction: column;
 }
 
-input{
+input {
   width: 80%;
   background-color: rgba(57, 46, 74);
   border: none;
@@ -64,7 +64,7 @@ input{
   letter-spacing: 1.5px;
 }
 
-textarea{
+textarea {
   width: 80%;
   background-color: rgba(57, 46, 74);
   border: none;
@@ -88,7 +88,7 @@ textarea{
 
 /* <=================== Pages stlyings ==================> */
 
-.Contanior{
+.Contanior {
   width: 80vw;
   max-width: 400px;
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
@@ -101,7 +101,7 @@ textarea{
   background-color: rgba(57, 46, 74);
 }
 
-.chatContanior{
+.chatContanior {
   width: 65vw;
   height: 85vh;
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
@@ -112,11 +112,11 @@ textarea{
   border-radius: 10px;
 }
 
-h2{
+h2 {
   margin-bottom: 15px;
 }
 
-.numbers{
+.numbers {
   width: 38%;
   height: 100%;
   border-radius: 10px;
@@ -124,12 +124,12 @@ h2{
   overflow-y: scroll;
 }
 
-.chatSection{
+.chatSection {
   width: 63%;
   height: 100%;
 }
 
-.logo{
+.logo {
   text-align: center;
   margin-top: 10px;
   letter-spacing: 2px;
@@ -142,17 +142,17 @@ h2{
   align-items: center;
 }
 
-.logo img{
+.logo img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
-.logoText{
+.logoText {
   margin-top: 10px;
 }
 
-.contactNumbes{
+.contactNumbes {
   overflow: hidden;
   height: 60px;
   display: flex;
@@ -162,7 +162,7 @@ h2{
   border-bottom: 1px solid rgb(47, 38, 59);
 }
 
-.contactNumbes:hover{
+.contactNumbes:hover {
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   transition: all 300ms;
 }
@@ -171,22 +171,22 @@ h2{
   width: 0px;
   background: rgba(57, 46, 74);
 }
-.contactNumbes img{
+.contactNumbes img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 
-.contactNumbes p{
+.contactNumbes p {
   margin-left: 20px;
 }
 
-.chatSection{
+.chatSection {
   position: relative;
   overflow: scroll;
 }
 
-.nav{
+.nav {
   overflow: hidden;
   display: flex;
   position: fixed;
@@ -201,23 +201,23 @@ h2{
   background-color: rgba(57, 46, 74);
 }
 
-.nav img{
+.nav img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 
-.nav p{
+.nav p {
   margin-left: 20px;
 }
 
-.chatTextSection{
+.chatTextSection {
   overflow-y: auto;
   padding-top: 10px;
   max-height: calc(100vh - 170px);
 }
 
-.texts{
+.texts {
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   display: inline-block;
   padding: 5px 15px;
@@ -228,15 +228,15 @@ h2{
   margin-bottom: 10px;
 }
 
-.userName{
+.userName {
   font-size: 10px;
   margin-bottom: 5px;
-  color:rgba(199, 199, 199, 0.514);
+  color: rgba(199, 199, 199, 0.514);
   letter-spacing: 2px;
   font-weight: 680;
 }
 
-.sendText{
+.sendText {
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   position: fixed;
   width: 40.2%;
@@ -249,17 +249,17 @@ h2{
   position: fixed;
 }
 
-#text{
+#text {
   height: 7px;
   width: 2200px;
 }
 
-#sendButton{
+#sendButton {
   padding: 7px;
   width: 90px;
 }
 
-.profile{
+.profile {
   position: absolute;
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   top: 100px;
@@ -272,81 +272,96 @@ h2{
   border-radius: 10px;
 }
 
-.profile img{
+.profile img {
   width: 55px;
   height: 55px;
   margin-bottom: 10px;
 }
 
-.profile h4{
+.profile h4 {
   margin-bottom: 10px;
 }
 
-.profile h6{
+.profile h6 {
   margin-bottom: 10px;
 }
 
-.oprationButtons{
+.oprationButtons {
   margin: 5px;
   padding: 8px;
 }
 
-#deleteAcc{
+#deleteAcc {
   background-color: rgb(137, 0, 0);
 }
 
+#edit {
+  background-color: rgb(34, 124, 34);
+}
+
+h1 {
+  letter-spacing: 2px;
+}
+
+.edit-back {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 @media only screen and (max-width: 767px) {
-  .chatSection{
+  .chatSection {
     display: none;
   }
 
-  .numbers{
+  .numbers {
     width: 100%;
   }
 
-  .backBtn{
+  .backBtn {
     padding: 10px;
     width: 50px;
     font-size: 18px;
   }
 
-  .nav{
+  .nav {
     width: 62%;
   }
 
-  .sendText{
+  .sendText {
     width: 59%;
     left: 17.5%;
     bottom: 58px;
     padding: 0px 15px;
   }
 
-  #text{
+  #text {
     margin-right: 10px;
   }
 
-  .chatContanior{
+  .chatContanior {
     width: 95vw;
     height: 95vh;
   }
 
-  .nav{
+  .nav {
     width: 91.5%;
   }
 
-  #text{
+  #text {
     height: 7px;
     width: 300px;
   }
 
-  .sendText{
+  .sendText {
     width: 88%;
     top: 85%;
     left: 3%;
     box-shadow: none;
   }
 
-  #sendButton{
+  #sendButton {
     padding: 7px;
     width: 90px;
     height: 45px;
