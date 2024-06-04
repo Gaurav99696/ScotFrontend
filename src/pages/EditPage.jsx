@@ -8,27 +8,31 @@ const EditPage = () => {
   const navigate = useNavigate();
   const cookie = new Cookies(null, "/");
 
-  const userInfo = cookie.get("Scot_Auth-User_Data");
-
   let [userName, setUserName] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [response, setResponse] = useState(null);
   let [editError, setEditError] = useState("");
+  let [userInfo, setUserInfo] = useState("");
 
   useEffect(() => {
-    const getUser = async () => {
-      const getUser = await fetch(
-        `https://scotbackend.onrender.com/api/users/getSingleUser/${userInfo.userName}`
-      );
-
-      const response = await getUser.json();
-      setResponse(response);
-      setUserName(response.getUser.userName);
-      setEmail(response.getUser.email);
-    };
-    getUser();
-  }, [userInfo.userName]);
+    const userInfo = cookie.get("Scot_Auth-User_Data");
+    if (userInfo) {
+      setUserInfo(userInfo);
+      const getUser = async () => {
+        const response = await fetch(
+          `https://scotbackend.onrender.com/api/users/getSingleUser/${userInfo.userName}`
+        );
+        const data = await response.json();
+        setResponse(data);
+        setUserName(data.getUser.userName);
+        setEmail(data.getUser.email);
+      };
+      getUser();
+    } else {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     if (editError) {
@@ -61,8 +65,6 @@ const EditPage = () => {
         } else {
           data.password = password;
         }
-      } else {
-        data.password = response.getUser.password;
       }
 
       try {
@@ -79,10 +81,14 @@ const EditPage = () => {
 
         const response = await updateUser.json();
 
+        console.log(response);
+
+        if (response.status == 400) {
+          setEditError(response.message);
+        }
+
         cookie.remove("Scot_Auth-User_Data");
         cookie.set("Scot_Auth-User_Data", response.updatedUser);
-
-        console.log(response);
       } catch (err) {
         console.log(err);
       }
@@ -125,7 +131,7 @@ const EditPage = () => {
 
         <div className="edit-back">
           <button id="deleteAcc" onClick={(e) => navigate("/")}>
-            Cancel
+            &lt; Back
           </button>
           <button id="edit" onClick={(e) => editAcc()}>
             Edit
