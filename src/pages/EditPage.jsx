@@ -69,7 +69,7 @@ const EditPage = () => {
 
       try {
         const updateUser = await fetch(
-          `http://localhost:5001/api/users/editUserAcc/${userInfo._id}`,
+          `https://scotbackend.onrender.com/api/users/editUserAcc/${userInfo._id}`,
           {
             method: "PATCH",
             headers: {
