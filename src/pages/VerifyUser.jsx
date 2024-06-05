@@ -11,7 +11,7 @@ const VerifyUser = () => {
 
   const navigate = useNavigate();
   const cookie = new Cookies(null, "/");
-  const AuthContext = useContext(auth) 
+  const AuthContext = useContext(auth);
 
   const verifyUser = async (e) => {
     e.preventDefault();
@@ -48,14 +48,16 @@ const VerifyUser = () => {
           cookie.set("Scot_Auth-Token", response.verified.Authorization);
           cookie.set("Scot_Auth-User_Data", response.verified.user);
 
-          AuthContext.setUser(response.verified.user)
+          AuthContext.setUser(response.verified.user);
 
           navigate("/");
-        }else{
-            setError(response.message)
+
+          AuthContext.setRegister(true);
+        } else {
+          setError(response.message);
         }
-      } else{
-        setError("Incorrect Email")
+      } else {
+        setError("Incorrect Email");
       }
     }
   };

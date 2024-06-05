@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import auth from "../context/AuthContext";
 import { io } from "socket.io-client";
 import Profile from "../components/Profile";
+import Notify from "../components/Notify";
 
 const Chat = () => {
   const [text, setText] = useState("");
@@ -63,6 +64,19 @@ const Chat = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (AuthContext.logIn) {
+      const timer = setTimeout(() => {
+        AuthContext.setLogIn(false);
+      }, 3000);
+    }
+    if (AuthContext.register) {
+      const timer = setTimeout(() => {
+        AuthContext.setRegister(false);
+      }, 3000);
+    }
+  }, [AuthContext.logIn, AuthContext.register]);
+
   const fetchSingleUser = async (userName) => {
     if (!userName) return;
 
@@ -109,6 +123,12 @@ const Chat = () => {
 
   return (
     <div className="chatContanior">
+      {AuthContext.logIn ? (
+        <Notify type={"correct"} text={"You are Loged in Succsesfuly "} />
+      ) : null}
+      {AuthContext.register ? (
+        <Notify type={"correct"} text={"You are Registered Succsesfuly "} />
+      ) : null}
       <div className="numbers">
         <div className="logo">
           <h2 className="logoText">Scot!</h2>

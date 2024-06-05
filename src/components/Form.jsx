@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import auth from "../context/AuthContext";
+import auth, { AuthContext } from "../context/AuthContext";
 
 const Form = ({ forSingUp }) => {
   let [userName, setUserName] = useState("");
@@ -111,6 +111,8 @@ const Form = ({ forSingUp }) => {
 
           authContext.setUser(response.isLogin?.data);
           navigate("/");
+
+          authContext.setLogIn(true);
         } else {
           setLogInError(response.message);
         }
@@ -121,57 +123,59 @@ const Form = ({ forSingUp }) => {
   };
 
   return (
-    <form>
-      {forSingUp ? <h2>Sing Up</h2> : <h2>Log in</h2>}
-      {forSingUp ? (
-        <h4 className="red">{singUpError}</h4>
-      ) : (
-        <h4 className="red">{logInError}</h4>
-      )}
-      {forSingUp ? (
-        <>
-          <input
-            type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            name="userName"
-            placeholder="Enter your user name..."
-          />
-        </>
-      ) : null}
+    <>
+      <form>
+        {forSingUp ? <h2>Sing Up</h2> : <h2>Log in</h2>}
+        {forSingUp ? (
+          <h4 className="red">{singUpError}</h4>
+        ) : (
+          <h4 className="red">{logInError}</h4>
+        )}
+        {forSingUp ? (
+          <>
+            <input
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              name="userName"
+              placeholder="Enter your user name..."
+            />
+          </>
+        ) : null}
 
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        name="email"
-        placeholder="Enter your Email..."
-      />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          placeholder="Enter your Email..."
+        />
 
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        name="password"
-        placeholder="Enter your Password..."
-      />
-      <br />
-      {forSingUp ? (
-        <button onClick={(e) => createAccount(e)}>Sing Up</button>
-      ) : (
-        <button onClick={(e) => logIn(e)}>Log In</button>
-      )}
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          placeholder="Enter your Password..."
+        />
+        <br />
+        {forSingUp ? (
+          <button onClick={(e) => createAccount(e)}>Sing Up</button>
+        ) : (
+          <button onClick={(e) => logIn(e)}>Log In</button>
+        )}
 
-      {forSingUp ? (
-        <h4>
-          Have an account? <Link to="/login">Log In</Link>
-        </h4>
-      ) : (
-        <h4>
-          Don't have an account? <Link to="/singUp">Sing Up</Link>
-        </h4>
-      )}
-    </form>
+        {forSingUp ? (
+          <h4>
+            Have an account? <Link to="/login">Log In</Link>
+          </h4>
+        ) : (
+          <h4>
+            Don't have an account? <Link to="/singUp">Sing Up</Link>
+          </h4>
+        )}
+      </form>
+    </>
   );
 };
 

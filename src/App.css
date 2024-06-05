@@ -310,6 +310,48 @@ h1 {
   gap: 10px;
 }
 
+.info {
+  background-color: rgb(26, 113, 245);
+  position: absolute;
+  width: 250px;
+  top: 30px;
+  padding: 13px;
+  left: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.danger {
+  background-color: rgb(245, 26, 26);
+  position: absolute;
+  width: 250px;
+  top: 30px;
+  padding: 13px;
+  left: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.correct {
+  background-color: rgb(0, 215, 32);
+  position: absolute;
+  width: 250px;
+  top: 30px;
+  padding: 13px;
+  left: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media only screen and (max-width: 767px) {
   .chatSection {
     display: none;

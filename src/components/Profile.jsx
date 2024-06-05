@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import auth from "../context/AuthContext";
 
 const Profile = ({ userName, email }) => {
   const cookie = new Cookies(null, "/");
   const navigate = useNavigate();
 
+  const AuthContext = useContext(auth);
+
   const signOut = () => {
     cookie.remove("Scot_Auth-User_Data");
     cookie.remove("Scot_Auth-Token");
     navigate("/");
+    AuthContext.setLogOut(true);
   };
 
   const deleteAcc = async () => {
@@ -26,6 +30,7 @@ const Profile = ({ userName, email }) => {
     cookie.remove("Scot_Auth-User_Data");
     cookie.remove("Scot_Auth-Token");
     navigate("/");
+    AuthContext.setDeleteUser(true);
   };
 
   return (

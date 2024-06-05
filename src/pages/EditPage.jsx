@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import React from "react";
 import Contanior from "../components/Contanior";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import auth from "../context/AuthContext";
+import Notify from "../components/Notify";
 
 const EditPage = () => {
   const navigate = useNavigate();
   const cookie = new Cookies(null, "/");
+
+  const AuthContext = useContext(auth);
 
   let [userName, setUserName] = useState("");
   let [email, setEmail] = useState("");
@@ -40,7 +44,13 @@ const EditPage = () => {
         setEditError("");
       }, 5000);
     }
-  }, [editError]);
+
+    if (AuthContext.editUser) {
+      const timer = setTimeout(() => {
+        AuthContext.setEditUser("");
+      }, 3000);
+    }
+  }, [editError, AuthContext.editUser]);
 
   const editAcc = async () => {
     let data = {};
@@ -89,6 +99,8 @@ const EditPage = () => {
 
         cookie.remove("Scot_Auth-User_Data");
         cookie.set("Scot_Auth-User_Data", response.updatedUser);
+
+        AuthContext.setEditUser(true);
       } catch (err) {
         console.log(err);
       }
@@ -101,6 +113,9 @@ const EditPage = () => {
 
   return (
     <>
+      {AuthContext.editUser ? (
+        <Notify type={"correct"} text={"User Update Successfuly"} />
+      ) : null}
       <Contanior>
         <h1>Edit</h1>
         {editError ? <h4 className="red">{editError}</h4> : null}
