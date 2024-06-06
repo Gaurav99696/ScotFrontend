@@ -5,6 +5,16 @@
   margin: 0;
 }
 
+.userIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.large {
+  width: 50px;
+  height: 50px;
+}
+
 body {
   background-color: rgba(57, 46, 74);
   color: rgba(238, 236, 243);
@@ -150,6 +160,10 @@ h2 {
 
 .logoText {
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 24%;
 }
 
 .contactNumbes {
@@ -160,6 +174,14 @@ h2 {
   padding-left: 15px;
   padding-top: 10px;
   border-bottom: 1px solid rgb(47, 38, 59);
+}
+
+.contactNumbes p {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 30%;
+  height: 100%;
 }
 
 .contactNumbes:hover {
@@ -255,8 +277,12 @@ h2 {
 }
 
 #sendButton {
-  padding: 7px;
-  width: 90px;
+  width: 400px;
+  height: 45px;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile {
@@ -288,7 +314,11 @@ h2 {
 
 .oprationButtons {
   margin: 5px;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 30px;
 }
 
 #deleteAcc {
@@ -306,8 +336,12 @@ h1 {
 .edit-back {
   width: 90%;
   display: flex;
-  justify-content: space-between;
   gap: 10px;
+}
+
+.editCancleBtn {
+  font-size: 50px;
+  height: 20px;
 }
 
 .info {
@@ -352,6 +386,10 @@ h1 {
   justify-content: space-between;
 }
 
+.logOutEdit {
+  display: flex;
+}
+
 @media only screen and (max-width: 767px) {
   .chatSection {
     display: none;
@@ -362,9 +400,8 @@ h1 {
   }
 
   .backBtn {
-    padding: 10px;
-    width: 50px;
-    font-size: 18px;
+    width: 30px;
+    font-size: 35px;
   }
 
   .nav {
@@ -407,5 +444,6 @@ h1 {
     padding: 7px;
     width: 90px;
     height: 45px;
+    font-size: 25px;
   }
 }

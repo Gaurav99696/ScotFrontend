@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import auth, { AuthContext } from "../context/AuthContext";
+import auth from "../context/AuthContext";
+import { FiLogIn } from "react-icons/fi";
 
 const Form = ({ forSingUp }) => {
   let [userName, setUserName] = useState("");
@@ -125,7 +126,7 @@ const Form = ({ forSingUp }) => {
   return (
     <>
       <form>
-        {forSingUp ? <h2>Sing Up</h2> : <h2>Log in</h2>}
+        {forSingUp ? <h2>Sing Up</h2> : <h2>Log In</h2>}
         {forSingUp ? (
           <h4 className="red">{singUpError}</h4>
         ) : (
@@ -162,7 +163,9 @@ const Form = ({ forSingUp }) => {
         {forSingUp ? (
           <button onClick={(e) => createAccount(e)}>Sing Up</button>
         ) : (
-          <button onClick={(e) => logIn(e)}>Log In</button>
+          <button onClick={(e) => logIn(e)}>
+            <FiLogIn className="userIcon" />
+          </button>
         )}
 
         {forSingUp ? (

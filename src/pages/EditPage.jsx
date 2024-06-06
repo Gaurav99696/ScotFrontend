@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import auth from "../context/AuthContext";
 import Notify from "../components/Notify";
+import { FaEdit } from "react-icons/fa";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const EditPage = () => {
   const navigate = useNavigate();
@@ -117,7 +119,9 @@ const EditPage = () => {
         <Notify type={"correct"} text={"User Update Successfuly"} />
       ) : null}
       <Contanior>
-        <h1>Edit</h1>
+        <h1>
+          <FaEdit className="editBtn" />
+        </h1>
         {editError ? <h4 className="red">{editError}</h4> : null}
         <input
           type="text"
@@ -145,11 +149,11 @@ const EditPage = () => {
         <br />
 
         <div className="edit-back">
-          <button id="deleteAcc" onClick={(e) => navigate("/")}>
-            &lt; Back
+          <button onClick={(e) => navigate("/")}>
+            <IoIosArrowRoundBack className="editCancleBtn" />
           </button>
           <button id="edit" onClick={(e) => editAcc()}>
-            Edit
+            <FaEdit className="editBtn" />
           </button>
         </div>
       </Contanior>

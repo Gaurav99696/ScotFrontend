@@ -5,6 +5,9 @@ import auth from "../context/AuthContext";
 import { io } from "socket.io-client";
 import Profile from "../components/Profile";
 import Notify from "../components/Notify";
+import { FaUserCircle } from "react-icons/fa";
+import { IoIosArrowRoundBack, IoMdSend } from "react-icons/io";
+import { SiHoppscotch } from "react-icons/si";
 
 const Chat = () => {
   const [text, setText] = useState("");
@@ -131,12 +134,12 @@ const Chat = () => {
       ) : null}
       <div className="numbers">
         <div className="logo">
-          <h2 className="logoText">Scot!</h2>
+          <h2 className="logoText">
+            <SiHoppscotch />
+            Scot!
+          </h2>
           <div onClick={() => setSeeProfile(!seeProfile)}>
-            <img
-              src="https://t4.ftcdn.net/jpg/04/98/72/43/360_F_498724323_FonAy8LYYfD1BUC0bcK56aoYwuLHJ2Ge.jpg"
-              alt="User"
-            />
+            <FaUserCircle className="userIcon" />
           </div>
           {seeProfile && userData ? (
             <Profile userName={userData.userName} email={userData.email} />
@@ -148,16 +151,17 @@ const Chat = () => {
             key={user._id}
             onClick={() => fetchSingleUser(user.userName)}
           >
-            <p>{user.userName}' Group</p>
+            <p>
+              <FaUserCircle className="userIcon" />
+              {user.userName}' Group
+            </p>
           </div>
         ))}
       </div>
       <div className="chatSection">
         <div className="nav">
           {window.innerWidth < 766 ? (
-            <button className="backBtn" onClick={backBtn}>
-              &lt;
-            </button>
+            <IoIosArrowRoundBack className="backBtn" onClick={backBtn} />
           ) : null}
           <p>{currentUser ? currentUser.userName : null}</p>
         </div>
@@ -179,7 +183,7 @@ const Chat = () => {
               placeholder="Type here..."
             />
             <button id="sendButton" onClick={addChat}>
-              Send
+              <IoMdSend />
             </button>
           </div>
         </section>

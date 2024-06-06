@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import auth from "../context/AuthContext";
+import { FaUserCircle, FaEdit } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import { MdDeleteForever } from "react-icons/md";
 
 const Profile = ({ userName, email }) => {
   const cookie = new Cookies(null, "/");
@@ -35,29 +38,28 @@ const Profile = ({ userName, email }) => {
 
   return (
     <div className="profile">
-      <img
-        src="https://t4.ftcdn.net/jpg/04/98/72/43/360_F_498724323_FonAy8LYYfD1BUC0bcK56aoYwuLHJ2Ge.jpg"
-        alt="User"
-      />
+      <FaUserCircle className="userIcon large" />
       <h4>{userName}</h4>
       <h5>{email}</h5>
       <br />
-      <button className="oprationButtons" onClick={(e) => signOut()}>
-        Log Out
-      </button>
-      <button
-        className="oprationButtons"
-        onClick={(e) => navigate("/editAcc")}
-        id="edit"
-      >
-        Edit
-      </button>
+      <div className="logOutEdit">
+        <button className="oprationButtons" onClick={(e) => signOut()}>
+          <FiLogOut />
+        </button>
+        <button
+          className="oprationButtons"
+          onClick={(e) => navigate("/editAcc")}
+          id="edit"
+        >
+          <FaEdit />
+        </button>
+      </div>
       <button
         className="oprationButtons"
         onClick={(e) => deleteAcc()}
         id="deleteAcc"
       >
-        Delete Account
+        <MdDeleteForever />
       </button>
     </div>
   );
