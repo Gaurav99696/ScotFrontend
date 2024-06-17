@@ -181,7 +181,7 @@ h2 {
   padding-top: 10px;
   border-bottom: 1px solid rgb(47, 38, 59);
   width: 100%;
-  justify-content: start;
+  justify-content: space-between;
   border-radius: 10px;
 }
 
