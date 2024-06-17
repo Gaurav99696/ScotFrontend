@@ -104,7 +104,7 @@ const AddFreand = () => {
         <h2 className="underline">Add Fraends</h2>
         {allUsers ? (
           allUsers.map((user) => (
-            <div className="contactNumbes" key={user._id}>
+            <div className="contactNumbes space-between" key={user._id}>
               <p>
                 <div className="flex">
                   <FaUserCircle className="userIcon" />
