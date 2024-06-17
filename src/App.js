@@ -5,6 +5,7 @@ import SingUp from "./pages/SingUp";
 import Chat from "./pages/Chat";
 import VerifyUser from "./pages/VerifyUser";
 import EditPage from "./pages/EditPage";
+import AddFreand from "./pages/AddFreand";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/singUp" element={<SingUp />} />
           <Route path="/verifyUser" element={<VerifyUser />} />
           <Route path="/editAcc" element={<EditPage />} />
+          <Route path="/addFreand" element={<AddFreand />} />
         </Routes>
       </BrowserRouter>
     </>

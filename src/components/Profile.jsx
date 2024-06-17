@@ -5,8 +5,9 @@ import auth from "../context/AuthContext";
 import { FaUserCircle, FaEdit } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { MdDeleteForever } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 
-const Profile = ({ userName, email }) => {
+const Profile = ({ userName, email, seeProfile }) => {
   const cookie = new Cookies(null, "/");
   const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ const Profile = ({ userName, email }) => {
 
   return (
     <div className="profile">
+      <RxCross2 className="cross" onClick={() => seeProfile(false)} />
       <FaUserCircle className="userIcon large" />
       <h4>{userName}</h4>
       <h5>{email}</h5>

@@ -5,6 +5,12 @@
   margin: 0;
 }
 
+.end {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
 .userIcon {
   width: 30px;
   height: 30px;
@@ -174,14 +180,19 @@ h2 {
   padding-left: 15px;
   padding-top: 10px;
   border-bottom: 1px solid rgb(47, 38, 59);
+  width: 100%;
+  justify-content: start;
+  border-radius: 10px;
 }
 
 .contactNumbes p {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 30%;
-  height: 100%;
+  justify-content: space-between;
+}
+
+.contactNumbes button {
+  width: 100px;
 }
 
 .contactNumbes:hover {
@@ -193,10 +204,9 @@ h2 {
   width: 0px;
   background: rgba(57, 46, 74);
 }
-.contactNumbes img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+
+.contactNumbes .userIcon {
+  margin-left: 14px;
 }
 
 .contactNumbes p {
@@ -213,6 +223,7 @@ h2 {
   display: flex;
   position: fixed;
   align-items: center;
+  justify-content: space-between;
   height: 60px;
   width: 39.5%;
   border-radius: 0px 10px 0px 0px;
@@ -293,7 +304,6 @@ h2 {
   left: 30%;
   width: 250px;
   background-color: rgba(57, 46, 74);
-  overflow-wrap: normal;
   padding: 20px 10px;
   border-radius: 10px;
 }
@@ -388,6 +398,83 @@ h1 {
 
 .logOutEdit {
   display: flex;
+}
+
+.navIcons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.underline {
+  border-bottom: 1px solid white;
+  width: 200px;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.addFeandBckBtn {
+  font-size: xx-large;
+  margin-right: 380px;
+}
+
+#addUser {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 170px;
+  margin-top: 50px;
+  padding: 15px;
+}
+
+.freands {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.delete-freand {
+  width: 70px;
+  font-size: larger;
+  margin-right: 20px;
+}
+
+.freands-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  position: absolute;
+  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  width: 250px;
+  background-color: rgba(57, 46, 74);
+  padding: 20px 10px;
+  border-radius: 10px;
+  top: 90px;
+  left: 30px;
+  z-index: 99999999;
+}
+
+.freands-details h4 {
+  margin: 10px 0px;
+}
+
+.freands-details h5 {
+  margin-bottom: 10px;
+}
+
+.cross {
+  margin-right: 200px;
+  font-size: x-large;
 }
 
 @media only screen and (max-width: 767px) {

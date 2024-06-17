@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const Contanior = ({ children}) => {
-  return (
-    <div className='Contanior'>{children}</div>
-  )
-}
+const Contanior = ({ otherClass, children }) => {
+  return <div className={`Contanior ${otherClass}`}>{children}</div>;
+};
 
-export default Contanior
+export default Contanior;

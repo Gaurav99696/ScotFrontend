@@ -1,20 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import auth from "../context/AuthContext";
 import { io } from "socket.io-client";
 import Profile from "../components/Profile";
 import Notify from "../components/Notify";
 import { FaUserCircle } from "react-icons/fa";
-import { IoIosArrowRoundBack, IoMdSend } from "react-icons/io";
+import { IoIosArrowRoundBack, IoMdSend, IoIosSearch } from "react-icons/io";
 import { SiHoppscotch } from "react-icons/si";
+import { GrAdd } from "react-icons/gr";
+import { MdDelete } from "react-icons/md";
+import { LuMessagesSquare } from "react-icons/lu";
+import { RxCross2 } from "react-icons/rx";
 
 const Chat = () => {
   const [text, setText] = useState("");
-  const [allUsers, setAllUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState();
   const [chats, setChats] = useState([]);
   const [seeProfile, setSeeProfile] = useState(false);
+  const [freands, setFreands] = useState([]);
+  const [seeFreand, setSeeFreand] = useState(false);
+  const [deletingFreand, setDeletingFreand] = useState(false);
 
   const cookies = new Cookies();
   const navigate = useNavigate();
@@ -34,29 +40,18 @@ const Chat = () => {
       return;
     }
 
-    if (!userData) {
-      console.log("No user data, redirecting to login.");
-      navigate("/login");
-      return;
-    }
+    const fetchFreands = async () => {
+      const getFreands = await fetch(
+        `http://localhost:5001/api/users/getFreands/${userData._id}`
+      );
 
-    const getAllContacts = async () => {
-      try {
-        const getContacts = await fetch(
-          `https://scotbackend.onrender.com/api/users/getAllUsers/${userData.userName}`
-        );
-        const response = await getContacts.json();
-        setAllUsers(response.getUsers);
-        if (window.innerWidth > 766 && response.getUsers.length > 0) {
-          fetchSingleUser(response.getUsers[0]?.userName);
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
+      const response = await getFreands.json();
+
+      setFreands(response.freands);
     };
 
-    getAllContacts();
-  }, [navigate, userData]);
+    fetchFreands();
+  }, []);
 
   useEffect(() => {
     socket.on("reciveMSG", (data) => {
@@ -78,7 +73,12 @@ const Chat = () => {
         AuthContext.setRegister(false);
       }, 3000);
     }
-  }, [AuthContext.logIn, AuthContext.register]);
+    if (deletingFreand) {
+      const timer = setTimeout(() => {
+        setDeletingFreand(false);
+      }, 3000);
+    }
+  }, [AuthContext.logIn, AuthContext.register, deletingFreand]);
 
   const fetchSingleUser = async (userName) => {
     if (!userName) return;
@@ -124,13 +124,76 @@ const Chat = () => {
     socket.emit("sendMSG", data);
   };
 
+  const deleteFreand = async () => {
+    const freandUserName = currentUser.userName;
+    const id = { id: userData._id };
+
+    try {
+      const deleting = await fetch(
+        `http://localhost:5001/api/users/deleteFeand/${freandUserName}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(id),
+        }
+      );
+
+      const response = await deleting.json();
+
+      if (response.message == "Success") {
+        document.querySelector(".numbers").style.display = "block";
+        document.querySelector(".chatSection").style.display = "none";
+
+        const fetchFreands = async () => {
+          const getFreands = await fetch(
+            `http://localhost:5001/api/users/getFreands/${userData._id}`
+          );
+
+          const response = await getFreands.json();
+
+          setFreands(response.freands);
+        };
+
+        fetchFreands();
+
+        setDeletingFreand(true);
+      }
+    } catch (error) {
+      console.error("Error In Deleting Frean", error);
+    }
+  };
+
   return (
     <div className="chatContanior">
+      {seeFreand ? (
+        <div className="freands-details">
+          <RxCross2 className="cross" onClick={(e) => setSeeFreand(false)} />
+          <FaUserCircle className="userIcon" />
+          <h4>{currentUser.userName}</h4>
+          <h5>{currentUser.email}</h5>
+          <div className="flex">
+            <button
+              className="oprationButtons delete-freand"
+              onClick={(e) => setSeeFreand(false)}
+            >
+              <LuMessagesSquare />
+            </button>
+            <button className="oprationButtons delete-freand" id="deleteAcc">
+              <MdDelete />
+            </button>
+          </div>
+        </div>
+      ) : null}
       {AuthContext.logIn ? (
         <Notify type={"correct"} text={"You are Loged in Succsesfuly "} />
       ) : null}
       {AuthContext.register ? (
         <Notify type={"correct"} text={"You are Registered Succsesfuly "} />
+      ) : null}
+      {deletingFreand ? (
+        <Notify type={"danger"} text={"Freand Deleted 😒"} />
       ) : null}
       <div className="numbers">
         <div className="logo">
@@ -138,32 +201,64 @@ const Chat = () => {
             <SiHoppscotch />
             Scot!
           </h2>
-          <div onClick={() => setSeeProfile(!seeProfile)}>
-            <FaUserCircle className="userIcon" />
+          <div className="navIcons">
+            <div onClick={() => navigate("/addFreand")}>
+              <IoIosSearch className="userIcon" />
+            </div>
+            <div onClick={() => setSeeProfile(!seeProfile)}>
+              <FaUserCircle className="userIcon" />
+            </div>
           </div>
           {seeProfile && userData ? (
-            <Profile userName={userData.userName} email={userData.email} />
+            <Profile
+              userName={userData.userName}
+              email={userData.email}
+              seeProfile={setSeeProfile}
+            />
           ) : null}
         </div>
-        {allUsers.map((user) => (
-          <div
-            className="contactNumbes"
-            key={user._id}
-            onClick={() => fetchSingleUser(user.userName)}
-          >
-            <p>
-              <FaUserCircle className="userIcon" />
-              {user.userName}' Group
-            </p>
-          </div>
-        ))}
+        <div className="freands">
+          {freands.length > 0 ? (
+            freands.map((friend, index) => (
+              <div
+                key={index}
+                onClick={() => fetchSingleUser(friend.userName)}
+                className="contactNumbes"
+              >
+                <FaUserCircle className="userIcon" />
+                <p>{friend.userName}</p>
+              </div>
+            ))
+          ) : (
+            <button id="addUser" onClick={() => navigate("/addFreand")}>
+              <GrAdd />
+              Add a friend
+            </button>
+          )}
+        </div>
       </div>
       <div className="chatSection">
         <div className="nav">
-          {window.innerWidth < 766 ? (
-            <IoIosArrowRoundBack className="backBtn" onClick={backBtn} />
-          ) : null}
-          <p>{currentUser ? currentUser.userName : null}</p>
+          <div className="flex">
+            {window.innerWidth < 766 ? (
+              <IoIosArrowRoundBack className="backBtn" onClick={backBtn} />
+            ) : null}
+            <div className="end">
+              <FaUserCircle
+                className="userIcon"
+                onClick={(e) => setSeeFreand(!seeFreand)}
+              />
+              <p>{currentUser ? currentUser.userName : null}</p>
+            </div>
+          </div>
+
+          <button
+            className="oprationButtons delete-freand"
+            id="deleteAcc"
+            onClick={(e) => deleteFreand()}
+          >
+            <MdDelete />
+          </button>
         </div>
         <section className="chatTextSection">
           {chats.map((chat, index) => (
