@@ -42,7 +42,7 @@ const Chat = () => {
 
     const fetchFreands = async () => {
       const getFreands = await fetch(
-        `http://localhost:5001/api/users/getFreands/${userData._id}`
+        `https://scotbackend.onrender.com/api/users/getFreands/${userData._id}`
       );
 
       const response = await getFreands.json();
@@ -130,7 +130,7 @@ const Chat = () => {
 
     try {
       const deleting = await fetch(
-        `http://localhost:5001/api/users/deleteFeand/${freandUserName}`,
+        `https://scotbackend.onrender.com/api/users/deleteFeand/${freandUserName}`,
         {
           method: "DELETE",
           headers: {
@@ -148,7 +148,7 @@ const Chat = () => {
 
         const fetchFreands = async () => {
           const getFreands = await fetch(
-            `http://localhost:5001/api/users/getFreands/${userData._id}`
+            `https://scotbackend.onrender.com/api/users/getFreands/${userData._id}`
           );
 
           const response = await getFreands.json();

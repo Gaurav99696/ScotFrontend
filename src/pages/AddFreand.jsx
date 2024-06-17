@@ -43,7 +43,7 @@ const AddFreand = () => {
             const getNonFreands = async () => {
               try {
                 const nonFreands = await fetch(
-                  `http://localhost:5001/api/users/getUnknownPeople/${userData._id}`
+                  `https://scotbackend.onrender.com/api/users/getUnknownPeople/${userData._id}`
                 );
                 const response = await nonFreands.json();
 
@@ -68,7 +68,7 @@ const AddFreand = () => {
     const data = { user: userData._id };
     try {
       const addFriend = await fetch(
-        `http://localhost:5001/api/users/addFeand/${id}`,
+        `https://scotbackend.onrender.com/api/users/addFeand/${id}`,
         {
           method: "POST",
           headers: {
