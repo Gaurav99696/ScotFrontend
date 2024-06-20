@@ -28,7 +28,7 @@ const Chat = () => {
 
   const userData = cookies.get("Scot_Auth-User_Data");
 
-  const socket = io("https://scotbackend.onrender.com", {
+  const socket = io("http://localhost:5001", {
     path: "/chat",
   });
 
@@ -93,8 +93,15 @@ const Chat = () => {
         `https://scotbackend.onrender.com/api/users/getSingleUser/${userName}`
       );
       const response = await getSingleUser.json();
+
       setCurrentUser(response.getUser);
-      setChats(response.getUser.messages);
+
+      await response.getUser.freand.map((freand) => {
+        if (freand["userName"] === userData.userName) {
+          return setChats(freand.messages);
+        }
+      });
+
       const chatSection = document.querySelector(".chatTextSection");
       chatSection.scrollBy(0, chatSection.scrollHeight);
     } catch (error) {
@@ -103,6 +110,8 @@ const Chat = () => {
   };
 
   const backBtn = () => {
+    console.log(chats);
+
     document.querySelector(".numbers").style.display = "block";
     document.querySelector(".chatSection").style.display = "none";
   };
@@ -261,11 +270,18 @@ const Chat = () => {
           </button>
         </div>
         <section className="chatTextSection">
-          {chats.map((chat, index) => (
-            <div className="texts" key={index}>
-              <div className="userName">{chat.sender || chat.reciver}</div>
-              <div>{chat.content}</div>
-            </div>
+          <br />
+          <br />
+          {chats?.map((chat, index) => (
+            <>
+              <br />
+
+              <div className="texts" key={index}>
+                <div className="userName">{chat.sender || chat.reciver}</div>
+                <div>{chat.content}</div>
+              </div>
+              <br />
+            </>
           ))}
           <div className="sendText">
             <textarea
