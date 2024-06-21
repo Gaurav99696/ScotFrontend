@@ -247,57 +247,75 @@ const Chat = () => {
         </div>
       </div>
       <div className="chatSection">
-        <div className="nav">
-          <div className="flex">
-            {window.innerWidth < 766 ? (
-              <IoIosArrowRoundBack className="backBtn" onClick={backBtn} />
-            ) : null}
-            <div className="end">
-              <FaUserCircle
-                className="userIcon"
-                onClick={(e) => setSeeFreand(!seeFreand)}
-              />
-              <p>{currentUser ? currentUser.userName : null}</p>
-            </div>
-          </div>
-
-          <button
-            className="oprationButtons delete-freand"
-            id="deleteAcc"
-            onClick={(e) => deleteFreand()}
-          >
-            <MdDelete />
-          </button>
-        </div>
-        <section className="chatTextSection">
-          <br />
-          <br />
-          {chats?.map((chat, index) => (
-            <>
-              <br />
-
-              <div className="texts" key={index}>
-                <div className="userName">{chat.sender || chat.reciver}</div>
-                <div>{chat.content}</div>
+        {currentUser ? (
+          <>
+            <div className="nav">
+              <div className="flex">
+                {window.innerWidth < 766 ? (
+                  <IoIosArrowRoundBack className="backBtn" onClick={backBtn} />
+                ) : null}
+                <div className="end">
+                  <FaUserCircle
+                    className="userIcon"
+                    onClick={(e) => setSeeFreand(!seeFreand)}
+                  />
+                  <p>{currentUser ? currentUser.userName : null}</p>
+                </div>
               </div>
+
+              <button
+                className="oprationButtons delete-freand"
+                id="deleteAcc"
+                onClick={(e) => deleteFreand()}
+              >
+                <MdDelete />
+              </button>
+            </div>
+            <section className="chatTextSection">
               <br />
-            </>
-          ))}
-          <div className="sendText">
-            <textarea
-              type="text"
-              rows={1}
-              cols={15}
-              id="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Type here..."
-            />
-            <button id="sendButton" onClick={addChat}>
-              <IoMdSend />
-            </button>
+              <br />
+              {chats?.map((chat, index) => (
+                <>
+                  <br />
+
+                  <div className="texts" key={index}>
+                    <div className="userName">
+                      {chat.sender || chat.reciver}
+                    </div>
+                    <div>{chat.content}</div>
+                  </div>
+                  <br />
+                </>
+              ))}
+              <div className="sendText">
+                <textarea
+                  type="text"
+                  rows={1}
+                  cols={15}
+                  id="text"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Type here..."
+                />
+                <button id="sendButton" onClick={addChat}>
+                  <IoMdSend />
+                </button>
+              </div>
+            </section>
+          </>
+        ) : (
+          <div className="big-log-wraper">
+            <div className="big-logo-containor">
+              <SiHoppscotch id="big-logo" />
+              <p>Scot!</p>
+            </div>
+            <br />
+            <h4>
+              Click on any of ur Freand to Chat! ( Chle aate hai faltu log
+              batkhi karne )
+            </h4>
           </div>
-        </section>
+        )}
       </div>
     </div>
   );
