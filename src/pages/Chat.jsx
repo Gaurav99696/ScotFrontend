@@ -207,8 +207,7 @@ const Chat = () => {
       <div className="numbers">
         <div className="logo">
           <h2 className="logoText">
-            <SiHoppscotch />
-            Scot!
+            <SiHoppscotch className="star" />
           </h2>
           <div className="navIcons">
             <div onClick={() => navigate("/addFreand")}>

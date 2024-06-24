@@ -290,6 +290,7 @@ h2 {
 }
 
 .profile {
+
   position: absolute;
   box-shadow: 0 0 10px 2px rgb(47, 38, 59);
   top: 100px;
@@ -519,13 +520,27 @@ h1 {
     width: 100%;
   }
 
-  .backBtn {
-    width: 30px;
-    font-size: 35px;
+  .addFeandBckBtn {
+    margin-left: 140px;
+  }
+
+  .flex .backBtn {
+    font-size: x-large;
   }
 
   .nav {
     width: 62%;
+  }
+
+  .profile {
+    left: 20%;
+    width: 60%;
+    padding: 20px 10px;
+    word-wrap: break-word;
+    /* For older browsers */
+    overflow-wrap: break-word;
+    /* For modern browsers */
+    white-space: normal;
   }
 
   .logoText {
@@ -566,6 +581,11 @@ h1 {
     top: 90px;
     left: 30px;
     z-index: 99999999;
+  }
+
+  .star {
+    font-size: xx-large;
+    margin-right: 10px;
   }
 
   .nav {

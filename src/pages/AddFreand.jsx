@@ -96,7 +96,7 @@ const AddFreand = () => {
     <>
       <Contanior>
         <IoIosArrowRoundBack
-          className="backBtn addFeandBckBtn"
+          className="backBtn addFeandBckBtn addFreand"
           onClick={() => navigate("/")}
         />
 
