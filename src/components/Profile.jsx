@@ -16,7 +16,7 @@ const Profile = ({ userName, email, seeProfile }) => {
   const signOut = () => {
     cookie.remove("Scot_Auth-User_Data");
     cookie.remove("Scot_Auth-Token");
-    navigate("/");
+    navigate("/login");
     AuthContext.setLogOut(true);
   };
 
@@ -33,7 +33,7 @@ const Profile = ({ userName, email, seeProfile }) => {
     );
     cookie.remove("Scot_Auth-User_Data");
     cookie.remove("Scot_Auth-Token");
-    navigate("/");
+    navigate("/login");
     AuthContext.setDeleteUser(true);
   };
 
