@@ -44,7 +44,7 @@ button {
   background-color: rgba(57, 46, 74);
   border: none;
   max-width: 400px;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   padding: 1.3rem;
   margin: 20px 0;
   border-radius: 13px;
@@ -69,7 +69,7 @@ input {
   background-color: rgba(57, 46, 74);
   border: none;
   max-width: 400px;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   padding: 1.3rem;
   margin: 20px 0;
   border-radius: 13px;
@@ -85,7 +85,7 @@ textarea {
   background-color: rgba(57, 46, 74);
   border: none;
   max-width: 400px;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   /* padding: 1.3rem; */
   padding: 20px;
   margin: 20px;
@@ -107,7 +107,7 @@ textarea {
 .Contanior {
   width: 80vw;
   max-width: 400px;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   padding: 30px;
   border-radius: 10px;
   display: flex;
@@ -120,7 +120,7 @@ textarea {
 .chatContanior {
   width: 65vw;
   height: 85vh;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -136,7 +136,7 @@ h2 {
   width: 38%;
   height: 100%;
   border-radius: 10px;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   overflow-y: scroll;
 }
 
@@ -150,7 +150,7 @@ h2 {
   margin-top: 10px;
   letter-spacing: 2px;
   font-weight: 200;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   margin-top: 0px;
   padding: 1px 25px;
   display: flex;
@@ -188,7 +188,7 @@ h2 {
 }
 
 .contactNumbes:hover {
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   transition: all 300ms;
 }
 
@@ -222,7 +222,7 @@ h2 {
   align-items: center;
   padding-left: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   background-color: rgba(57, 46, 74);
 }
 
@@ -243,7 +243,7 @@ h2 {
 }
 
 .texts {
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   display: inline-block;
   padding: 5px 15px;
   max-width: 500px;
@@ -262,7 +262,7 @@ h2 {
 }
 
 .sendText {
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   position: fixed;
   width: 40.2%;
   top: 80%;
@@ -292,7 +292,7 @@ h2 {
 .profile {
 
   position: absolute;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   top: 100px;
   text-align: center;
   left: 30%;
@@ -448,7 +448,7 @@ h1 {
   justify-content: space-around;
   flex-direction: column;
   position: absolute;
-  box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+  box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
   width: 250px;
   background-color: rgba(57, 46, 74);
   padding: 20px 10px;
@@ -573,7 +573,7 @@ h1 {
     justify-content: space-around;
     flex-direction: column;
     position: absolute;
-    box-shadow: 0 0 10px 2px rgb(47, 38, 59);
+    box-shadow: 0 0 10px 1px rgba(233, 215, 255, 0.171);
     width: 250px;
     background-color: rgba(57, 46, 74);
     padding: 20px 10px;
