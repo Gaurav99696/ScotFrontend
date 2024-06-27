@@ -28,7 +28,7 @@ const Chat = () => {
 
   const userData = cookies.get("Scot_Auth-User_Data");
 
-  const socket = io("http://localhost:5001", {
+  const socket = io("https://scot-uybn.onrender.com", {
     path: "/chat",
   });
 
